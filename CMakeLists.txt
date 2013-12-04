@@ -1,21 +1,21 @@
-cmake_minimum_required(VERSION 2.8)          # Проверка версии CMake.
-											 # Если версия установленой программы
-											 # старее указаной, произайдёт аварийный выход.
+cmake_minimum_required(VERSION 2.8)          # ГЏГ°Г®ГўГҐГ°ГЄГ  ГўГҐГ°Г±ГЁГЁ CMake.
+                                                                                         # Г…Г±Г«ГЁ ГўГҐГ°Г±ГЁГї ГіГ±ГІГ Г­Г®ГўГ«ГҐГ­Г®Г© ГЇГ°Г®ГЈГ°Г Г¬Г¬Г»
+                                                                                         # Г±ГІГ Г°ГҐГҐ ГіГЄГ Г§Г Г­Г®Г©, ГЇГ°Г®ГЁГ§Г Г©Г¤ВёГІ Г ГўГ Г°ГЁГ©Г­Г»Г© ГўГ»ГµГ®Г¤.
 
-project(TCPChat)                      		 # Название проекта
+project(TCPChat)                                       # ГЌГ Г§ГўГ Г­ГЁГҐ ГЇГ°Г®ГҐГЄГІГ 
 
-set(SOURCE_SERVER server.cpp)                # Установка переменной со списком исходников для исполняемого файла
+set(SOURCE_SERVER server.cpp)                # Г“Г±ГІГ Г­Г®ГўГЄГ  ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г®Г© Г±Г® Г±ГЇГЁГ±ГЄГ®Г¬ ГЁГ±ГµГ®Г¤Г­ГЁГЄГ®Гў Г¤Г«Гї ГЁГ±ГЇГ®Г«Г­ГїГҐГ¬Г®ГЈГ® ГґГ Г©Г«Г 
 
-set(SOURCE_CLIENT client.cpp)                # Установка переменной со списком исходников для исполняемого файла
+set(SOURCE_CLIENT client.cpp)                # Г“Г±ГІГ Г­Г®ГўГЄГ  ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г®Г© Г±Г® Г±ГЇГЁГ±ГЄГ®Г¬ ГЁГ±ГµГ®Г¤Г­ГЁГЄГ®Гў Г¤Г«Гї ГЁГ±ГЇГ®Г«Г­ГїГҐГ¬Г®ГЈГ® ГґГ Г©Г«Г 
 
-set(SOURCE_LIB network.cpp)                  # Тоже самое, но для библиотеки
+set(SOURCE_LIB network.cpp)                  # Г’Г®Г¦ГҐ Г±Г Г¬Г®ГҐ, Г­Г® Г¤Г«Гї ГЎГЁГЎГ«ГЁГ®ГІГҐГЄГЁ
 
-add_library(network STATIC ${SOURCE_LIB})    # Создание статической библиотеки с именем scaner
+add_library(network STATIC ${SOURCE_LIB})    # Г‘Г®Г§Г¤Г Г­ГЁГҐ Г±ГІГ ГІГЁГ·ГҐГ±ГЄГ®Г© ГЎГЁГЎГ«ГЁГ®ГІГҐГЄГЁ Г± ГЁГ¬ГҐГ­ГҐГ¬ scaner
 
-add_executable(server ${SOURCE_SERVER})      # Создает исполняемый файл с именем server
+add_executable(server ${SOURCE_SERVER})      # Г‘Г®Г§Г¤Г ГҐГІ ГЁГ±ГЇГ®Г«Г­ГїГҐГ¬Г»Г© ГґГ Г©Г« Г± ГЁГ¬ГҐГ­ГҐГ¬ server
 
-add_executable(client ${SOURCE_CLIENT})      # Создает исполняемый файл с именем server
+add_executable(client ${SOURCE_CLIENT})      # Г‘Г®Г§Г¤Г ГҐГІ ГЁГ±ГЇГ®Г«Г­ГїГҐГ¬Г»Г© ГґГ Г©Г« Г± ГЁГ¬ГҐГ­ГҐГ¬ server
 
-target_link_libraries(server scaner)         # Линковка программы с библиотекой
+target_link_libraries(server network pthread)         # Г‹ГЁГ­ГЄГ®ГўГЄГ  ГЇГ°Г®ГЈГ°Г Г¬Г¬Г» Г± ГЎГЁГЎГ«ГЁГ®ГІГҐГЄГ®Г©
 
-target_link_libraries(client scaner)         # Линковка программы с библиотекой
+target_link_libraries(client network pthread)         # Г‹ГЁГ­ГЄГ®ГўГЄГ  ГЇГ°Г®ГЈГ°Г Г¬Г¬Г» Г± ГЎГЁГЎГ«ГЁГ®ГІГҐГЄГ®Г©
